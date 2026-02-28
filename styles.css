@@ -1,0 +1,235 @@
+:root {
+  --bg: #0e1525;
+  --panel: #17233c;
+  --panel-light: #203150;
+  --text: #e8efff;
+  --accent: #66d1ff;
+  --warn: #ff7d7d;
+  --path: #ffd166;
+  --safe: #72e1a8;
+  --fatal: #ff5252;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(circle at top, #17233c, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+}
+
+header,
+footer {
+  text-align: center;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0.3rem 0;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.map-panel,
+.card {
+  background: color-mix(in srgb, var(--panel) 85%, black 15%);
+  border: 1px solid #2c456d;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+}
+
+.map-panel {
+  padding: 0.75rem;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+#createControlBtn {
+  background: #1f3a63;
+  border: 1px solid #5f89c0;
+  border-radius: 8px;
+  color: var(--text);
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#createControlBtn.active {
+  background: #7f2237;
+  border-color: #ff7d7d;
+}
+
+.control-hint {
+  margin: 0 0 0.5rem;
+  color: #b7d6f3;
+  font-size: 0.9rem;
+}
+
+.speed-control {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.4rem 0.8rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+#manualSpeed {
+  width: 100%;
+}
+
+#speedValue {
+  font-weight: 700;
+  min-width: 60px;
+  text-align: right;
+}
+
+#speedCapNote {
+  grid-column: 1 / -1;
+  color: #9ac0e6;
+}
+
+#manualSpeed:disabled {
+  opacity: 0.45;
+}
+
+select {
+  background: var(--panel-light);
+  color: var(--text);
+  border: 1px solid #406090;
+  border-radius: 8px;
+  padding: 0.4rem;
+}
+
+#stormMap {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.map-bg {
+  fill: #102441;
+}
+
+.grid-line {
+  stroke: #1f3a63;
+  stroke-width: 1;
+  opacity: 0.8;
+}
+
+.path-line {
+  fill: none;
+  stroke: var(--path);
+  stroke-width: 4;
+  stroke-dasharray: 10 8;
+  animation: drift 1.4s linear infinite;
+}
+
+.path-line-reveal {
+  animation: none;
+}
+
+@keyframes drift {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+.tornado-marker {
+  fill: var(--warn);
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.chaser-marker {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.chaser-hit {
+  fill: #fdb462;
+}
+
+.chaser-fatal {
+  fill: var(--fatal);
+}
+
+.marker-label {
+  fill: white;
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+.info-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  padding: 0.75rem 1rem;
+}
+
+.card h2 {
+  margin-top: 0.2rem;
+  margin-bottom: 0.6rem;
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
+.chaser-status {
+  font-size: 0.9rem;
+}
+
+.chaser-status.safe {
+  color: var(--safe);
+}
+
+.chaser-status.hit {
+  color: #fdb462;
+}
+
+.chaser-status.fatal {
+  color: var(--fatal);
+  font-weight: 700;
+}
+
+.meta {
+  color: #a8cae8;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .map-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

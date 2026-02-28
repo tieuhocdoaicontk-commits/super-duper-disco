@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fictional Tornado Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Fictional Tornado Tracker</h1>
+      <p>Monitor active fictional tornadoes, storm chaser teams, and live meteorologist reports.</p>
+    </header>
+
+    <main>
+      <section class="map-panel">
+        <div class="map-header">
+          <h2>Regional Radar (Fictional)</h2>
+          <div class="map-controls">
+            <label>
+              Active Storm:
+              <select id="stormSelect"></select>
+            </label>
+            <button id="createControlBtn" type="button">create and control</button>
+          </div>
+        </div>
+        <p id="controlHint" class="control-hint">Press the button to spawn a controllable tornado (WASD / Arrow Keys).</p>
+        <div class="speed-control">
+          <label for="manualSpeed">Manual tornado speed:</label>
+          <input id="manualSpeed" type="range" min="1" max="73" step="1" value="35" />
+          <span id="speedValue">35 mph</span>
+          <small id="speedCapNote"></small>
+        </div>
+        <svg id="stormMap" viewBox="0 0 900 480" role="img" aria-label="Map showing tornado path and chasers">
+          <rect x="0" y="0" width="900" height="480" class="map-bg"></rect>
+          <g id="grid"></g>
+          <polyline id="pathLine" class="path-line" points=""></polyline>
+          <circle id="tornadoMarker" class="tornado-marker" cx="0" cy="0" r="12"></circle>
+          <text id="tornadoLabel" class="marker-label" x="0" y="0"></text>
+          <g id="chaserMarkers"></g>
+        </svg>
+      </section>
+
+      <section class="info-panel">
+        <article class="card">
+          <h2>Storm Details</h2>
+          <ul id="stormDetails"></ul>
+        </article>
+
+        <article class="card">
+          <h2>Storm Chaser Team</h2>
+          <ul id="chaserList"></ul>
+        </article>
+
+        <article class="card">
+          <h2>Chaser Incident Log</h2>
+          <p id="incidentLog">No active strike reports on storm chaser teams right now.</p>
+        </article>
+
+        <article class="card report-card">
+          <h2>Meteorologist Live Report</h2>
+          <p id="reportText"></p>
+          <p id="reporterMeta" class="meta"></p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <small>All storms and people shown are fictional for demo purposes.</small>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
