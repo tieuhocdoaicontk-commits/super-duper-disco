@@ -92,6 +92,7 @@ const storms = [
 ];
 
 const MILES_PER_PIXEL = 0.2;
+const SIMULATION_TIME_SCALE = 120;
 const DEFAULT_MANUAL_TORNADO_SPEED_MPH = 35;
 const FASTEST_RECORDED_TORNADO_MOVEMENT_MPH = 73;
 const MAP_WIDTH = 900;
@@ -138,7 +139,7 @@ function updateFollowView(tornadoPoint) {
 }
 
 function mphToPixelsPerSecond(mph) {
-  return mph / MILES_PER_PIXEL / 3600;
+  return (mph / MILES_PER_PIXEL / 3600) * SIMULATION_TIME_SCALE;
 }
 
 function extractMph(speedText) {
@@ -522,7 +523,7 @@ function toggleCreateAndControl() {
 
   renderManualStormDetails();
 
-  reportText.textContent = 'Control mode is live. Hold Arrow Keys or WASD to steer the tornado at realistic movement speed.';
+  reportText.textContent = 'Control mode is live. Hold Arrow Keys or WASD to steer the tornado with simulation-scaled movement speed.';
   reporterMeta.textContent = 'NWS Survey Placeholder • Fictional Rapid Assessment';
 
   createControlBtn.classList.add('active');
